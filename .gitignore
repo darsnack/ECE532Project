@@ -225,3 +225,6 @@ TSWLatexianTemp*
 
 # auto folder when using emacs and auctex 
 /auto/*
+
+## Mac stuff ##
+.DS_Store
