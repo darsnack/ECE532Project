@@ -1,0 +1,66 @@
+\documentclass{report}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[colorlinks]{hyperref}
+\usepackage{listings}
+
+\lstdefinestyle{code}{
+    language=Matlab,
+    frame=L,
+    basicstyle=\ttfamily,
+    keywordstyle=\color{blue},
+    breaklines=true
+}
+
+\renewcommand\appendix{\par
+  \setcounter{section}{0}
+  \setcounter{subsection}{0}
+  \setcounter{figure}{0}
+  \setcounter{table}{0}
+  \renewcommand\thesection{Appendix \Alph{section}}
+  \renewcommand\thefigure{\Alph{section}\arabic{figure}}
+  \renewcommand\thetable{\Alph{section}\arabic{table}}
+}
+
+\title{ECE532 -- Final Project}
+\author{Kyle Daruwalla \\ \href{mailto:daruwalla@wisc.edu}{daruwalla@wisc.edu}
+    \and Davis Gilton \\ \href{mailto:gilton@wisc.edu}{gilton@wisc.edu}
+    \and Shuoyand Qiu \\ \href{mailto:sqiu26@wisc.edu}{sqiu26@wisc.edu}
+}
+\date{15 Dec. 2016}
+
+\newcommand{\set}[1]{\mathbb{#1}}
+
+\bibliographystyle{ieeetr}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    \input{abstract}
+\end{abstract}
+
+\section{Background}
+\label{sec:background}
+\input{background}
+
+\section{Warm-Up}
+\label{sec:warm-up}
+\input{warm-up}
+
+\section{Lab}
+\label{sec:lab}
+\input{lab}
+
+\newpage
+\nocite{*}
+\bibliography{references}
+
+\newpage
+\appendix
+\section{Sample Appendix}
+\label{app:sample-appendix}
+\input{appendix}
+
+\end{document}
