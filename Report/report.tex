@@ -1,8 +1,12 @@
 \documentclass{report}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{amsthm}
 \usepackage[colorlinks]{hyperref}
 \usepackage{listings}
+\usepackage{parskip}
+
+\newtheorem{theorem}{Theorem}
 
 \lstdefinestyle{code}{
     language=Matlab,
@@ -32,6 +36,8 @@
 \date{15 Dec. 2016}
 
 \newcommand{\set}[1]{\mathbb{#1}}
+\newcommand{\rank}[1]{\mathrm{rank}\left(#1\right)}
+\newcommand{\code}[1]{{\texttt{#1}}}
 
 \bibliographystyle{ieeetr}
 
@@ -61,8 +67,8 @@
 
 \newpage
 \appendix
-\section{Sample Appendix}
-\label{app:sample-appendix}
+\section{Solutions}
+\label{app:solutions}
 \input{appendix}
 
 \end{document}
