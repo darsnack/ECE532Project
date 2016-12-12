@@ -1,0 +1,12 @@
+The following code will provide an example solution to what we ask for in the lab's second section.
+\lstinputlisting[style=code,title=Lab2.m]{../Code/Lab2.m}
+
+It is necessary to take the econ SVD in this section, because to do otherwise will produce matrices with size $76800 \times 76800$, and that combined with a double variable size of 8 bytes gives us a matrix that takes up around 50 GB of data. And that's just $U$. As-is, the $U$, $S$, and $V$ matrices are of size $76800\times 141$, $141 \times 141$, and $141 \times 141$ respectively. 
+
+What happens is that by taking the SVD and doing a low-rank approximation, we are basically trying to express our video with as few variations between frames as possible, since each vector is in reality a whole frame. The counterintuitive thing that you have to wrap your mind around is that each basis vector is no longer a vector, but an entire image. So the best rank-1 approximation is the outer product of the background and an all-ones vector.
+
+Alternately, movement represents pixel value variations when you travel along the time dimension. A low-rank approximation ignores small variations, and if there's a relatively small amount of movement in the video, like this one, then it is ignored by the low-rank approximation.
+
+So we expect for a video with a non-moving camera and something that could be called a background, that the low-rank approximation will be the background of the image, with much of the moving parts removed. It's the low-frequency in the time dimension components.
+
+The central point of this lab is that we have structured the data in such a way that we get interesting results. If we put the time dimension on a different axis, you get different results. How might you, the reader, structure your data in order to pull out patterns that you want? This lab is a demonstration of how important that question is (along with the SVD stuff).

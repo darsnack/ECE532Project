@@ -26,7 +26,7 @@ Given another video, what would you expect a very low-rank approximation of that
 
 In the previous problem, we were able to extract the low-rank approximation to our video data. In practice what this ended up meaning is that we removed those objects in the video that weren't constant over the time dimension: they were moving.
 
-The result was extracting only the background? But what happens to the moving objects (and the lighting changes)? Which singular values would you set to zero to extract only the objects in the video that are moving?
+The result was extracting only the background. But what happens to the moving objects (and the lighting changes)? Which singular values would you set to zero to extract only the objects in the video that are moving?
 
 Using the results of the SVD that you took in Problem 2, extract the moving parts of xylophone.mp4 and convert them back into a video. Play back the video to ensure that your method worked.
 
@@ -44,7 +44,7 @@ backgroundImage = downsample(downsample(backgroundImage,2)',2)';
 Reshape this image, and then take the SVD as if it were a single-frame video. The reshaped image should be a single column vector. What size do you expect your U, S, and V matrices to be? After taking the SVD, did the result make sense?
 
 Because this is a single-frame video, the $V$ vector is $1\times 1$. Is there a way to make this $V$ vector more closely resemble the $V$ vector produced when taking the SVD of the xylophone.mp4 data?
-(\textit{Hint:}  You could create a video where every frame was this image: what would your $V$ vector look like in that case?)
+(\textit{Hint:}  You could create a video where every frame was this image; what would your $V$ vector look like in that case?)
 
 Replace the first left singular vector of the xylophone.mp4 2D matrix with the $U$ from our image. Similarly, replace the right singular vector with the $V$ vector you just created. You should also replace the top singular value with the singular value you obtained in this problem.
 

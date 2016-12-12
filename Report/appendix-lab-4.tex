@@ -1,0 +1,10 @@
+In order to produce something that will work nicely, we need to reshape the image in such a way that it will resemble a 1-frame video. So it should be "flattened" to have dimensions $76800 \times 1$. So $U$, $S$, and $V$ will have dimensions $76800 \times 1$, $1 \times 1$, and $1 \times 1$ respectively. This makes sense, because essentially $U$ \textit{is} our image, but normalized. If we wanted to make this a video, we would just convert $V$ to be a matrix of all ones that was $141 \times 141$, say, and multiply our $S$ scalar by the $141 \times 141$ identity matrix.
+
+When replacing the left singular value, just replace the first left singular value by the $U$ vector we found earlier. The top $S$ value should be replaced by the singular value we just found, and we can replace the first right singular vector by a vector of all ones.
+
+This will mean that what we have made is no longer a proper SVD, but we weren't out to do that anyway. We are producing a particular video editing effect, not do a particularly rigorous transformation.
+
+The following code will provide an example solution to what we ask for in the lab's final section.
+\lstinputlisting[style=code,title=Lab4.m]{../Code/Lab4.m}
+
+The result should be the xylophone keys and the hand playing them, superimposed on the top of our image, which in this case is a microscope slide image with some cells.
