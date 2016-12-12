@@ -1,3 +1,56 @@
-This is the main section of the report. It should contain 3 to 5 longer tasks that call on the reader to solve, analyze, visualize, and discuss problems related to the main theme of the project. Each problem may be accompanied by additional explanations if necessary (you can also use multiple subsections if it helps). The problems don’t need to be in a list; you may elect to intersperse the problems within your text but be sure to clearly label them so the reader knows what they’re being asked to do. With regards to format, use your best judgement for what makes your report most readable. If you are using external data files/sources, be sure to address and explain where the problem data is coming from (research? the internet? synthetically generated?). Complete solutions to the lab problems should be included in the appendix.
+\subsection{Setup}
 
-\textit{This might be a good place to split into subsections}
+During the course of this lab we will operate on the xylophone.mp4 video that you used in the warm-up section.
+
+If you have not already done so, use the code developed in warm-up problem 1 to read in the xylophone.mp4 video and convert it to greyscale. After Warm-Up problem 3, you should have a good idea of how to reshape the data to make the three-dimensional video data into two dimensions. Convert the 3-D greyscale video matrix into a 2-D matrix.
+
+(\textit{Hint:} ensure that the resulting 2-D matrix has the same number of rows as there are frames in the video, and 320$\times$ 240 rows)
+
+Test that you can recreate the original greyscale video using only the results of the SVD.
+
+\subsection{SVD and Eckart-Young With Video Data}
+
+We will now take the SVD of the video data, to try to see what a low-rank approximation of a video might look like. As we saw in Question 2 of our Warm Up, computing the SVD for every frame is a valid approach, but doesn't produce any effects unique to videos. So we want to find a way to compute the SVD across an entire video.
+
+The SVD is only defined for 2-D matrices, so we have to use the flattened matrix we created in problem 1.
+
+Should you take the econ SVD, or the full SVD? What will be the dimensions of the resulting U, S, and V matrices in both cases? How much storage space would these matrices require?
+
+In the Warm-Up problem part 2, you reviewed how to do a low-rank approximation of image data. There, you let $k=20$. Here, let $k=6$, and reconstruct an approximation to xylophone.mp4 letting only the first 6 singular values be nonzero.
+
+Convert this into a video, and watch the video using MATLAB's implay() function (remember that you need to convert the data to uint8 before watching the video!). What do you observe? Why might this be?
+
+Given another video, what would you expect a very low-rank approximation of that video to look like?
+
+\subsection{Inverse Eckart-Young?}
+
+In the previous problem, we were able to extract the low-rank approximation to our video data. In practice what this ended up meaning is that we removed those objects in the video that weren't constant over the time dimension: they were moving.
+
+The result was extracting only the background? But what happens to the moving objects (and the lighting changes)? Which singular values would you set to zero to extract only the objects in the video that are moving?
+
+Using the results of the SVD that you took in Problem 2, extract the moving parts of xylophone.mp4 and convert them back into a video. Play back the video to ensure that your method worked.
+
+\subsection{Video Editing with the SVD}
+
+We now have all the tools we need to do some simple video editing. The conclusion of our lab will be using the ideas we have developed so far to replace the background of our xylophone.mp4 video.
+
+This can be done with any image of appropriate size, as long as that image is greyscale and $240\times 320$ pixels. Matlab has a built-in image that can be used for this purpose when downsampled using the following code snippet:
+
+\begin{lstlisting}[style=code]
+backgroundImage = imread('AT3_1m4_03.tif');
+backgroundImage = downsample(downsample(backgroundImage,2)',2)';
+\end{lstlisting}
+
+Reshape this image, and then take the SVD as if it were a single-frame video. The reshaped image should be a single column vector. What size do you expect your U, S, and V matrices to be? After taking the SVD, did the result make sense?
+
+Because this is a single-frame video, the $V$ vector is $1\times 1$. Is there a way to make this $V$ vector more closely resemble the $V$ vector produced when taking the SVD of the xylophone.mp4 data?
+(\textit{Hint:}  You could create a video where every frame was this image: what would your $V$ vector look like in that case?)
+
+Replace the first left singular vector of the xylophone.mp4 2D matrix with the $U$ from our image. Similarly, replace the right singular vector with the $V$ vector you just created. You should also replace the top singular value with the singular value you obtained in this problem.
+
+Recreate and play the new video. What do you observe?
+
+Experiment. Can you remove the xylophone keys, but leave the arm and stick? How about the other way around?
+
+
+
