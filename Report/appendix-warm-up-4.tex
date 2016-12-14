@@ -1,22 +1,4 @@
-For the first experiment, try plotting the value of the pixel over time. It should look like a square wave that is flipping between 1 and 0. Suppose the square wave goes from 1 to 0 to 1 to 0. What would be the integral of this square wave over this time interval? It should be the average value -- 0.5. Therefore, if you could only use a single value to represent the pixel's values over time, it would be 0.5.
-
-If you could use a $T \times 1$ vector, the obvious solution is to use the pixels value. For example, if $T = 4$, then the vector would be
-$$\left[\begin{matrix}
-	1 \\
-	0 \\
-	1 \\
-	0
-\end{matrix}\right]$$
-But this vector would not represent the pixel at (0, 1) well. The vector for that pixel would be
-$$\left[\begin{matrix}
-	0 \\
-	1 \\
-	0 \\
-	1
-\end{matrix}\right]$$
-So the vector we chose initially would be incorrect would be wrong for every element. We are trying to represent the how two pixels are changing over time with a single vector. Therefore, it might be a better idea to use the average value of those two pixels. A vector of where every element is 0.5 would be equally correct for both pixels.
-
-For the second experiment, the pixel at (0, 0) is white for all time, so we can use the value 0 to represent it. Similarly, a pixel in the same row as the black box is white almost all of the time, except it is black for one time instance. Therefore, we can just use a pixel value of 0 to represent it, and we would be write most of the time.
+For the thought experiment, the pixel at (0, 0) is white for all time, so we can use the value 0 to represent it. Similarly, a pixel in the same row as the black box is white almost all of the time, except it is black for one time instance. Therefore, we can just use a pixel value of 0 to represent it, and we would be write most of the time.
 
 The matrix we are trying to form looks like this:
 $$\left[\begin{matrix}
@@ -29,4 +11,4 @@ $$\left[\begin{matrix}
 \end{matrix}\right]$$
 It is a matrix with a small identity matrix in the center that is surrounded by zeros all around. If we look at each column of this matrix, it is either all zeros, or it is zeros everywhere except one element is one. If we can only use one vector to represent these vectors, we would choose a vector of all zeros, because placing a single 1 in any position would only be correct for one column and wrong for all others.
 
-Notice that this matrix has reduced an entire video to just two dimensions -- position along the columns and time along the rows. Applying the SVD techniques to this matrix will do what we have been doing in this warm-up exercise -- it tries to use a single vector to represent several positions in the image across time. These vectors may not be all ones or zeros like we have been constructing. Think about positions in the image whose \textit{change} over time is similar. The background pixel positions are all subject to the same change over time (lighting, etc). So, a single unit vector can represent that normalized change. Then each pixel is just a scalar multiple of that vector.
+Notice that this matrix has reduced an entire video to just two dimensions -- position along the columns and time along the rows. Applying the SVD techniques to this matrix will do what we have been doing in this warm-up exercise -- it tries to use a single vector to represent several positions in the image across time. These vectors may not be all ones or zeros like we have been constructing. Think about positions in the image whose \textit{change} over time is similar. The background pixel positions are all subject to the same change over time (lighting, etc). So, a single unit vector can represent that normalized change. Then each pixel is just a scalar multiple of that vector. So what does using the SVD to find a low-rank approximation to this matrix do? Simply, it tries to represent the matrix using only a few basis vectors. The number of basis vectors is the determined by the rank chosen for the low-rank approximation.

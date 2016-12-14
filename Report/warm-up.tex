@@ -34,24 +34,7 @@ Based on the previous two problems, the obvious next step to applying SVD compre
 \textbf{Problem:} Use your result from the previous warm-up problem to compress the grayscale video frame by frame. Use the same compression value ($k = 50$). What do you notice about the output? Is it as you expected? Try it with a lower compression value ($k = 20$) to see more drastic results. Solutions are included in \ref{app:warm-up-solution-3}.
 
 \subsection{Reshaping video data}
-This problem is a simple thought experiment. First consider a video frame capturing a series of black (pixel value 1) and white (pixel value 0) stripes moving across the screen as shown in Fig. \ref{fig:warm-up-4-experiment-1}. Each stripe in the example is a single pixel wide. Now focus on a single pixel (e.g. the pixel at (0, 0) in the top left corner). At time $t = 0$, the pixel has value 1, because there is a black stripe across it. At time $t = 1$, the black stripe moves to the right, and a white stripe takes its place, so the pixel has value 0. This pattern continues infinitely as long as there are stripes moving through the viewing window.
-\begin{figure}[ht]
-	\centering
-	\begin{tikzpicture}
-		\foreach \i in {0, ..., 5} {
-			\draw [fill] (-1*\i + 0.5, 0) rectangle (-1*\i + 1, -3);
-		}
-
-		\draw [red, thick] (0, 0) rectangle (4, -3);
-		\draw [->, thick] (1.1, -1.5) -- (2, -1.5);
-	\end{tikzpicture}
-	\caption{The red box is the viewing frame of the video capture device. The series of black and white strips moves from left to right under the viewing window.}
-	\label{fig:warm-up-4-experiment-1}
-\end{figure}
-
-\textbf{Problem:} Imagine the pattern continues for time $T$ steps. Over that interval, you can only use one value to represent the value of the pixel you have been focusing on. What value do you choose? Now suppose you can choose a $T \times 1$ vector where the element at index $i$ represents the value of the pixel at time $t = i$. What vector do you choose? Will this vector be correct if you focused on the pixel adjacently to the right (i.e. pixel at (0, 1))? If you can choose only one vector to represent the values of both pixels over time, what vector do you choose? (\textit{Hint:} think back to your answer for the first question in this problem). Solutions included in \ref{app:warm-up-solution-4}.
-
-Now consider a different example. We have the same viewing window, but instead we are sliding a $1\text{px} \times 1\text{px}$ black square across the screen (see Fig. \ref{fig:warm-up-4-experiment-2} and ignore the numbers for now).
+This problem is a simple thought experiment. As shown in Fig. \ref{fig:warm-up-4-experiment}, we have a viewing window frame (represented by the red box), and we are sliding a $1\text{px} \times 1\text{px}$ black square across the screen. Ignore the numbers in Fig. \ref{fig:warm-up-4-experiment} for now.
 \begin{figure}[ht]
 	\centering
 	\begin{tikzpicture}
@@ -71,7 +54,7 @@ Now consider a different example. We have the same viewing window, but instead w
 		\node at (1.75, -0.75) {$\ldots$};
 	\end{tikzpicture}
 	\caption{The red box is the viewing frame of the video capture device. The black square moves under the viewing frame from left to right.}
-	\label{fig:warm-up-4-experiment-2}
+	\label{fig:warm-up-4-experiment}
 \end{figure}
 
-\textbf{Problem:} Focus on the pixel at (0, 0). What single value represents its value over all of time? Now focus on a pixel in the same row as the black box. What single value represents its value over all time? (\textit{Hint:} don't over think it or think about actually calculating the average). Now suppose you vectorize the 2D viewing window -- count across the pixels in the frame as shown in Fig. \ref{fig:warm-up-4-experiment-2} and place them in a row vector in that order. Suppose there are $N$ total pixels in the frame, then the row vector should be $1 \times N$. This vector represents the values of all the pixels at one moment in time. Now create another such row vector for the next moment in time, and so on, until you have $T$ $1 \times N$ vectors. Arrange these vectors in a matrix so that each row of the matrix is one of the row vectors, and as you go down the rows of the matrix, you are advancing in time. Note that each \textit{column} of this matrix is like the vectors we were working with in the previous problem -- the values of a signle pixel across all values of time. What would this matrix look like for the experiment in Fig. \ref{fig:warm-up-4-experiment-2}? You can now choose a \textit{column} vector, like we previously did, to represent all the columns of this matrix. What vector do you choose? (\textit{Hint:} this is just like choosing a single vector for two pixels like we did before -- except we are looking over $N$ pixels instead of just two).
+\textbf{Problem:} Focus on the pixel at (0, 0). What single value represents its value over all of time? Now focus on a pixel in the same row as the black box. What single value represents its value over all time? (\textit{Hint:} don't over think it or think about actually calculating the average). Now suppose you vectorize the 2D viewing window -- count across the pixels in the frame as shown in Fig. \ref{fig:warm-up-4-experiment} and place them in a row vector in that order. Suppose there are $N$ total pixels in the frame, then the row vector should be $1 \times N$. This vector represents the values of all the pixels at one moment in time. Now create another such row vector for the next moment in time, and so on, until you have $T$ $1 \times N$ vectors. Arrange these vectors in a matrix so that each row of the matrix is one of the row vectors, and as you go down the rows of the matrix, you are advancing in time. Note that each \textit{column} of this matrix is the values of a single pixel across all values of time. What would this matrix look like for the experiment in Fig. \ref{fig:warm-up-4-experiment}? You can now choose a \textit{column} vector to represent all the columns of this matrix. What vector do you choose?
