@@ -1,1 +1,35 @@
 This section should explain the context for the main idea behind the project (you may divide this section into multiple subsections if it helps with readability). Start with a description of the problem that will be solved, a brief history (with citations) of how the problem came about, why it’s important/interesting, and any other interesting facts you’d like to talk about. Feel free to use images/diagrams/etc. from research papers, the internet, or other sources to help with your explanation, so long as you cite your references. Finally, the background section should also give a mathematical description of the problem, with equations as needed.
+
+The Singular Value Decomposition (SVD) is a popular mathematical tool, finding uses in linear algebra, signal processing, image processing, statistics, and control theory. The SVD factorizes an $m\times n$ complex matrix rank-$r$ $A$ into the form:
+
+\[ A = U \Sigma V^\intercal \]
+
+Where $U$ is an $m\times m$ unitary matrix and $V$ is an $n \times n$ unitary matrix. $\Sigma$ is an $m \times n$ rectangular matrix, which has only $r$ nonzero elements (called "singular values") on its diagonal, which are traditionally arranged in descending order. All other elements of $\Sigma$ are zero. So we assume $\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_r > 0$. As usual, $r = \mathrm{rank}(A) \leq \min(m,n)$.
+
+We call the columns of $U$, $[u_1, u_2, \ldots, u_m]$ the left singular vectors of $A$. Similarly, we refer to the columns of $V$, $[v_1, v_2, \ldots v_n]$ as the right singular vectors of $A$.
+
+In this lab, we will also refer to the "economy" SVD. This version of the SVD factorizes $A$ as:
+
+\[ A = U_1 \Sigma_1 V_1^\intercal \]
+
+Where $\Sigma_1$ is an $r \times r$ diagonal matrix containing only positive singular value elements. $U_1$ is an $m \times r$ unitary matrix containing only the first $r$ left singular vectors of $A$, and $V_1$ is an $n \times r$ unitary matrix containing only the first $r$ right singular vectors of $A$. This decomposition is smaller than the full SVD, and so can be useful when dealing with extremely large matrices.
+
+Now we can represent $A$ as a linear combination of rank-1 matrices:
+
+\[ A = \sigma_1 u_1 v_1^\intercal + \sigma_2 u_2 v_2^\intercal + \ldots + \sigma_r u_r v_r^\intercal \]
+
+From class, you will remember the Eckart-Young Theorem\cite{Eckart1936}:
+
+\begin{theorem}
+	Given a matrix, $A \in \set{R}^{m \times n}$ that has rank $r$, we can find a rank $k \leq r$ approximation to $A$, $X$ as
+	$$\sum_{i = 1}^k \sigma_i u_i v_i^\top$$
+	where $\sigma_i$ are the singular values of $A$, and $u_i$ and $v_i$ are the singular vectors of $A$. Note that $X$ is also the solution to the problem
+	$$\arg \min_{\rank{B} \leq k} \|A - B\|$$
+	\label{thm:eckart-young}
+\end{theorem}
+
+This tells us that the SVD can be used to find the best low-rank approximation possible. In particular, these low-rank methods can be used for image processing. 
+
+There are many interesting applications of the SVD in image processing, including several related to Principal Component Analysis (PCA) and advanced filtering techniques.\cite{1162766}\cite{1326538}\cite{382496} The SVD can also be used on video and image data to reconstruct fragmented or damaged photos and videos.\cite{VideoRest}
+
+In this lab, we will first explore some example image processing techniques, particularly low-rank approximations. Afterwards, we will investigate how to structure video data to be analyzable using our methods, and explore the significance of a low-rank video approximation. Finally, we will conclude with a video editing scheme based entirely around the SVD. Let's start with the warmup!

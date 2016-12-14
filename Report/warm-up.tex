@@ -7,15 +7,7 @@ The following problems are designed to familiarize you with concepts you will us
 \end{enumerate}
 
 \subsection{Compressing image data}
-From class, you will remember the Eckart-Young Theorem
-\begin{theorem}
-	Given a matrix, $A \in \set{R}^{m \times n}$ that has rank $r$, we can find a rank $k \leq r$ approximation to $A$, $X$ as
-	$$\sum_{i = 1}^k \sigma_i u_i v_i^\top$$
-	where $\sigma_i$ are the singular values of $A$, and $u_i$ and $v_i$ are the singular vectors of $A$. Note that $X$ is also the solution to the problem
-	$$\arg \min_{\rank{B} \leq k} \|A - B\|$$
-	\label{thm:eckart-young}
-\end{theorem}
-We can use this concept to find low-rank approximations to image data. Consider a grayscale image where each pixel is a value from 0 to 255. We can represent this image as a matrix of pixel values. Thm. \ref{thm:eckart-young} can be used to find a rank $r$ approximation to this matrix. Now, our image is represented by a low-rank matrix $X$, thereby compressing the image size.
+ Consider a grayscale image where each pixel is a value from 0 to 255. We can represent this image as a matrix of pixel values. Thm. \ref{thm:eckart-young} can be used to find a rank $r$ approximation to this matrix. Now, our image is represented by a low-rank matrix $X$, thereby compressing the image size.
 
 \textbf{Problem:} Download the image \href{http://www.laurentlessard.com/teaching/ece532/homework/bucky.csv}{bucky.csv}. Your task is to use MATLAB and Thm. \ref{thm:eckart-young} to compress this image so it can be represented by a rank 50 matrix. Solutions are included in \ref{app:warm-up-solution-1}.
 
