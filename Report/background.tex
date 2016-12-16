@@ -4,7 +4,7 @@ The Singular Value Decomposition (SVD) is a popular mathematical tool, with appl
 
 Where $U$ is an $m\times m$ unitary matrix and $V$ is an $n \times n$ unitary matrix. $\Sigma$ is an $m \times n$ rectangular matrix, which has only $r$ nonzero elements (called ``singular values'') on its diagonal, which are traditionally arranged in descending order. All other elements of $\Sigma$ are zero. So we assume $\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_r > 0$. As expected, $r = \mathrm{rank}(A) \leq \min(m,n)$.
 
-We call the columns of $U$, $[u_1, u_2, \ldots, u_m]$ the left singular vectors of $A$. Similarly, we refer to the columns of $V$, $[v_1, v_2, \ldots, v_n]$ as the right singular vectors of $A$.
+We call the columns of $U$, $[u_1, u_2, \ldots, u_m]$, the left singular vectors of $A$. Similarly, we refer to the columns of $V$, $[v_1, v_2, \ldots, v_n]$, as the right singular vectors of $A$.
 
 In this lab, we will also refer to the ``economy'' SVD. This version of the SVD factorizes $A$ as:
 
@@ -16,7 +16,7 @@ Now we can represent $A$ as a linear combination of rank-1 matrices:
 
 \[ A = \sigma_1 u_1 v_1^\intercal + \sigma_2 u_2 v_2^\intercal + \ldots + \sigma_r u_r v_r^\intercal \]
 
-From class, you will remember the Eckart-Young Theorem\cite{Eckart1936}:
+From class, you might remember the Eckart-Young Theorem \cite{Eckart1936}:
 
 \begin{theorem}
 	Given a matrix, $A \in \set{R}^{m \times n}$ that has rank $r$, we can find a rank $k \leq r$ approximation to $A$, $X$ as

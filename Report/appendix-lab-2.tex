@@ -5,7 +5,7 @@ It is necessary to take the econ SVD in this section, because to do otherwise wi
 
 What happens is that by taking the SVD and doing a low-rank approximation, we are basically trying to express our video with as few variations between frames as possible, since each vector is in reality a whole frame. The counterintuitive thing that you have to wrap your mind around is that each basis vector is no longer a vector, but an entire image. So the best rank-1 approximation is the outer product of the background and an all-ones vector.
 
-Alternately, movement represents pixel value variations when you travel along the time dimension. A low-rank approximation ignores small variations, and if there's a relatively small amount of movement in the video, like this one, then it is ignored by the low-rank approximation.
+Alternatively, movement represents pixel value variations when you travel along the time dimension. A low-rank approximation ignores small variations, and if there's a relatively small amount of movement in the video, like this one, then it is ignored by the low-rank approximation.
 
 So we expect for a video with a non-moving camera and something that could be called a background, that the low-rank approximation will be the background of the image, with much of the moving parts removed. It's the low-frequency in the time dimension components.
 
@@ -13,5 +13,4 @@ The central point of this lab is that we have structured the data in such a way 
 
 Video results can be found at:
 
-https://github.com/NiceanLoH/videoData/blob/master/largeSVVideo.zip
-
+\url{https://github.com/NiceanLoH/videoData/blob/master/largeSVVideo.zip}
