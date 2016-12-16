@@ -2,3 +2,9 @@ The code below will compute video compression by doing standard SVD image compre
 \lstinputlisting[style=code,title=WarmUp3.m]{../Code/WarmUp3.m}
 
 When we performed compression on images, the results just looked like lower resolution images. The video compression results appear to have a similar characteristic. So far, this makes sense, but it doesn't appear to target low frequency or high frequency portions of the video like we wanted. However, if you bump up the compression to $k = 20$, then the video doesn't just look like it is lower resolution, but it is also blurry (almost as if someone used the smudge tool in Photoshop on it). This is because we are compressing frames individually and not relating them to each other. The next warm-up exercise will help you explore how we can apply the same SVD techniques across the time dimension.
+
+Videos can be found at:
+
+\text{https://github.com/NiceanLoH/videoData/blob/master/compressed\_video\_20.zip}
+
+\text{https://github.com/NiceanLoH/videoData/blob/master/compressed\_video\_50.zip}

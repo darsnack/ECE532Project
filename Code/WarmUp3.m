@@ -15,7 +15,7 @@ for i = 1:num_frames
     gray_video(:, :, i) = rgb2gray(video_matrix(:, :, :, i));
 end
 
-% Set our compression to rank 20
+% Set our compression to rank 20 (change to 50 if desired)
 k = 20;
 
 % Compress the video frame by frame
