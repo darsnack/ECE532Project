@@ -7,6 +7,7 @@
 \usepackage{listings}
 \usepackage{parskip}
 \usepackage{tikz}
+\usepackage[margin=1.25in]{geometry}
 \usetikzlibrary{positioning}
 \usetikzlibrary{calc}
 
@@ -42,6 +43,7 @@
 \newcommand{\set}[1]{\mathbb{#1}}
 \newcommand{\rank}[1]{\mathrm{rank}\left(#1\right)}
 \newcommand{\code}[1]{{\texttt{#1}}}
+\renewcommand{\thesection}{\arabic{section}}
 
 \bibliographystyle{ieeetr}
 
@@ -65,7 +67,6 @@
 \label{sec:lab}
 \input{lab}
 
-\newpage
 \nocite{*}
 \bibliography{references}
 

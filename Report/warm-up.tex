@@ -1,4 +1,4 @@
-The following problems are designed to familiarize you with concepts you will use throughout the lab. We will tackle four topics topics:
+The following problems are designed to familiarize you with concepts you will use throughout the lab. We will tackle four topics:
 \begin{enumerate}
 	\item Performing compression using the SVD on image data
 	\item Working with video data in MATLAB
@@ -9,12 +9,12 @@ The following problems are designed to familiarize you with concepts you will us
 \subsection{Compressing image data}
  Consider a grayscale image where each pixel is a value from 0 to 255. We can represent this image as a matrix of pixel values. Thm. \ref{thm:eckart-young} can be used to find a rank $r$ approximation to this matrix. Now, our image is represented by a low-rank matrix $X$, thereby compressing the image size.
 
-\textbf{Problem:} Download the image \href{http://www.laurentlessard.com/teaching/ece532/homework/bucky.csv}{bucky.csv}. Your task is to use MATLAB and Thm. \ref{thm:eckart-young} to compress this image so it can be represented by a rank 50 matrix. Solutions are included in \ref{app:warm-up-solution-1}.
+\textbf{Problem:} Download the image \href{http://www.laurentlessard.com/teaching/ece532/homework/bucky.csv}{bucky.csv}. Your task is to use MATLAB and Thm. \ref{thm:eckart-young} to compress this image so it can be represented by a rank 50 matrix. Recall from a previous homework set that this will entail setting some of the singular values to 0. Using the theorem,  Solutions are included in \ref{app:warm-up-solution-1}.
 
 \subsection{Video data in MATLAB}
 So far, we've only worked with image data in MATLAB. These particular images contained only two dimensions -- width and height. Videos contain four dimensions -- width, height, channels, and time. First, a video is a series of frames in time. Each frame is still three dimensions. The third dimension, known as the channel, corresponds to the red (R), green (G), and blue (B) channels of a color image. Each channel is only two dimensions like the images we've worked so far. Previously, our image data was in grayscale, which is only one channel instead of three. In order to perform the problems in this lab, we will need to convert the video data from color to grayscale.
 
-\textbf{Problem:} Use the code snippet below to read in a video built-in to MATLAB. Then go through the video frame by frame and convert it from RGB to grayscale. (\textit{Hint:} you might find the MATLAB documentation on \code{VideoReader}, \code{rgb2gray}, and \code{implay} helpful). Solutions are included in \ref{app:warm-up-solution-2}.
+\textbf{Problem:} Use the code snippet below to read in a video built in to MATLAB. Then go through the video frame-by-frame and convert it from RGB to grayscale. (\textit{Hint:} you might find the MATLAB documentation on \code{VideoReader}, \code{rgb2gray}, and \code{implay} helpful). Solutions are included in \ref{app:warm-up-solution-2}.
 \begin{lstlisting}[style=code]
 v = VideoReader('xylophone.mp4');
 videoMatrix = v.read;
@@ -49,4 +49,8 @@ This problem is a simple thought experiment. As shown in Fig. \ref{fig:warm-up-4
 	\label{fig:warm-up-4-experiment}
 \end{figure}
 
-\textbf{Problem:} Focus on the pixel at (0, 0). What single value represents its value over all of time? Now focus on a pixel in the same row as the black box. What single value represents its value over all time? (\textit{Hint:} don't over think it or think about actually calculating the average). Now suppose you vectorize the 2D viewing window -- count across the pixels in the frame as shown in Fig. \ref{fig:warm-up-4-experiment} and place them in a row vector in that order. Suppose there are $N$ total pixels in the frame, then the row vector should be $1 \times N$. This vector represents the values of all the pixels at one moment in time. Now create another such row vector for the next moment in time, and so on, until you have $T$ $1 \times N$ vectors. Arrange these vectors in a matrix so that each row of the matrix is one of the row vectors, and as you go down the rows of the matrix, you are advancing in time. Note that each \textit{column} of this matrix is the values of a single pixel across all values of time. What would this matrix look like for the experiment in Fig. \ref{fig:warm-up-4-experiment}? You can now choose a \textit{column} vector to represent all the columns of this matrix. What vector do you choose?
+\textbf{Problem:} Focus on the pixel at (0, 0). What single value represents its value over all of time? Now focus on a pixel in the same row as the black box. If you had to guess at a random time what its value was, what would be the best value to guess? (\textit{Hint:} don't over think it or actually calculate the average).
+
+Now suppose you vectorize the 2D viewing window -- count across the pixels in the frame as shown in Fig. \ref{fig:warm-up-4-experiment} and place them in a row vector in that order. Suppose there are $N$ total pixels in the frame, then the row vector should be $1 \times N$. This vector represents the values of all the pixels at one moment in time. Now create another such row vector for the next moment in time, and so on, until you have $T$ $1 \times N$ vectors. Arrange these vectors in a matrix so that each row of the matrix is one of the row vectors, and as you go down the rows of the matrix, you are advancing in time. Note that each \textit{column} of this matrix is the values of a single pixel across all values of time. What would this matrix look like for the experiment in Fig. \ref{fig:warm-up-4-experiment}? You can now choose a \textit{column} vector to represent all the columns of this matrix. What vector do you choose?
+
+The standard way to reshape a matrix into a vector is to "stack" the columns so that the vector becomes an $M \times M$ column, with the first column of our matrix on top, the second immediately below it, and so on. We will use this method for reshaping videos in this lab.

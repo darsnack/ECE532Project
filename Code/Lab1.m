@@ -13,7 +13,11 @@ for ii=1:numberOfFrames
     greyVideo(:,:,ii) = rgb2gray(videoMatrix(:,:,:,ii));
 end
 
-% implay(uint8(greyVideo));
+implay(uint8(greyVideo));
 
 % Flatten the video in the standard way with reshape
 flattenedVideo = reshape(greyVideo,[videoDim1*videoDim2,numberOfFrames]);
+
+% Reshape the video to ensure that this worked
+greyVideo2 = reshape(flattenedVideo,size(greyVideo));
+implay(uint8(greyVideo2));

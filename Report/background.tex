@@ -21,8 +21,9 @@ From class, you will remember the Eckart-Young Theorem\cite{Eckart1936}:
 \begin{theorem}
 	Given a matrix, $A \in \set{R}^{m \times n}$ that has rank $r$, we can find a rank $k \leq r$ approximation to $A$, $X$ as
 	$$\sum_{i = 1}^k \sigma_i u_i v_i^\top$$
-	where $\sigma_i$ are the singular values of $A$, and $u_i$ and $v_i$ are the singular vectors of $A$. Note that $X$ is also the solution to the problem
+	where $\sigma_i$ are the singular values of $A$, and $u_i$ and $v_i$ are the singular vectors of $A$. Moreover, $X$ is  the solution to the problem
 	$$\arg \min_{\rank{B} \leq k} \|A - B\|$$
+	for any unitarily-invariant norm.
 	\label{thm:eckart-young}
 \end{theorem}
 
